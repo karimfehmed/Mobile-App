@@ -1,0 +1,10 @@
+@mixin gridbox {
+  display: grid;
+  justify-content: center;
+}
+
+@mixin commoncode {
+  color: #36454f;
+  font-family: "Proxima Nova";
+  font-style: normal;
+}

@@ -1,0 +1,35 @@
+@import "mixin";
+@import "var";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.SplashOne {
+  width: 393px;
+}
+.DoctorImage {
+  width: 361px;
+}
+
+.DoctorTitle {
+  @include commoncode;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 24px;
+  padding-top: 32px;
+}
+.DoctorSubTitle {
+  @include commoncode;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  padding-top: 26px;
+  color: #76848d;
+}
+.card-Border {
+  @include gridbox;
+  border-radius: 100px;
+  padding-bottom: 19px;
+  padding-top: 88px;
+}

@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Hello from "../components/Splash1.vue";
+import Hello from "../components/Splash.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
