@@ -1,0 +1,29 @@
+@import "mixin";
+@import "var";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.blue {
+  background-color: $bg-color;
+  @include flexbox;
+  h1 {
+    @include commoncode(0.8rem, uppercase);
+    color: white;
+
+    &:hover {
+      background-color: pink;
+    }
+    &::after {
+      content: " Now";
+    }
+  }
+  p {
+    @include commoncode(0.3rem, lowercase);
+    color: green;
+    &:hover {
+      background-color: red;
+    }
+  }
+}
