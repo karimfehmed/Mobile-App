@@ -1,0 +1,11 @@
+@mixin Flex-properties {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin Font-properties {
+  color: #36454f;
+  font-family: "Proxima Nova";
+  font-style: normal;
+  outline: none;
+}

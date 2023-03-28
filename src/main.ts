@@ -3,7 +3,7 @@ import App from "./App.vue";
 import vuetify from "./plugins/vuetify";
 import { loadFonts } from "./plugins/webfontloader";
 import router from "../src/router/index";
-import "..//src/assets/sass/main.css";
+import "..//src/assets/scss/main.css";
 
 loadFonts();
 
