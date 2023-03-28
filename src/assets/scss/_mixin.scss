@@ -1,10 +1,11 @@
-@mixin gridbox {
-  display: grid;
-  justify-content: center;
+@mixin Flex-properties {
+  display: flex;
+  justify-content: space-between;
 }
 
-@mixin commoncode {
+@mixin Font-properties {
   color: #36454f;
   font-family: "Proxima Nova";
   font-style: normal;
+  outline: none;
 }

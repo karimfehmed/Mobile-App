@@ -19,10 +19,9 @@ const props = defineProps<{
   background-color: #cc5500;
   border-radius: 12px;
   box-shadow: none;
-  margin-top: 42px;
-  font-family: "Proxima Nova" !important;
+  font-family: "Proxima Nova";
   font-style: normal;
-  font-weight: 600 !important;
+  font-weight: 600;
   font-size: 18px;
   line-height: 18px;
   color: white;

@@ -4,53 +4,117 @@
   box-sizing: border-box;
 }
 
-.splashOne {
+.SplashOne {
   width: 393px;
+  height: 100%;
 }
 
-.doctorImage {
-  width: 361px;
+.DoctorImage {
+  width: 100%;
 }
 
-.cardTitle {
+.DoctorTitle {
   color: #36454f;
   font-family: "Proxima Nova";
   font-style: normal;
+  outline: none;
   font-weight: 400;
   font-size: 24px;
   line-height: 24px;
   padding-top: 32px;
 }
 
-.SubTitle {
+.DoctorSubTitle {
   color: #36454f;
   font-family: "Proxima Nova";
   font-style: normal;
+  outline: none;
   font-weight: 400;
   font-size: 16px;
   line-height: 23px;
   padding-top: 26px;
+  padding-bottom: 20px;
   color: #76848d;
 }
 
-.cardButton {
+.Signup {
+  width: 393px;
+}
+
+.SignupHeading {
+  display: flex;
+  padding: 20px 0;
+}
+.SignupHeading img {
+  height: 18.75px;
+  width: 18.75px;
+  cursor: pointer;
+}
+.SignupHeading p {
   color: #36454f;
   font-family: "Proxima Nova";
   font-style: normal;
-  background-color: #cc5500;
-  border-radius: 12px;
+  outline: none;
+  text-align: center;
   font-weight: 600;
   font-size: 18px;
   line-height: 18px;
-  color: white;
-  box-shadow: none;
-  margin-top: 42px;
+  color: #242424;
 }
 
-.card-Border {
-  display: grid;
-  justify-content: center;
-  border-radius: 100px;
-  padding-bottom: 19px;
-  padding-top: 88px;
+.GenderSelect {
+  color: #36454f;
+  font-family: "Proxima Nova";
+  font-style: normal;
+  outline: none;
+  width: 345px;
+  height: 45px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 16px;
+  color: #76848d;
+  margin-top: 8px;
+  padding: 8px;
+}
+
+.Baseinputlabel {
+  color: #36454f;
+  font-family: "Proxima Nova";
+  font-style: normal;
+  outline: none;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 14px;
+  color: #242424;
+}
+
+.WeightHeight {
+  display: flex;
+  justify-content: space-between;
+}
+
+.WeightAndheightInput {
+  width: 49%;
+}
+
+.Terms input {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #6e6b7b;
+}
+.Terms p {
+  color: #36454f;
+  font-family: "Proxima Nova";
+  font-style: normal;
+  outline: none;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #76848d;
+}
+.Terms p span {
+  font-weight: 600;
+  color: #242424;
 }/*# sourceMappingURL=main.css.map */

@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-background d-flex justify-center">
+  <div class="bg-background d-flex">
     <v-sheet class="SplashOne">
-      <v-card class="splashCard">
+      <v-card flat class="splashCard">
         <img src="../assets/images/splashFrame.png" alt="Frame" />
         <v-card-text width="393">
           <v-window v-model="tab">
@@ -20,7 +20,7 @@
           </v-window>
         </v-card-text>
         <div class="d-flex justify-center">
-          <v-tabs class="v-tabs--doctors" v-model="tab">
+          <v-tabs class="v-tabs--doctors" active v-model="tab">
             <v-tab value="one" class="NextSlide"> </v-tab>
             <v-tab value="two" class="NextSlide"></v-tab>
             <v-tab value="three" class="NextSlide"></v-tab>
@@ -33,18 +33,17 @@
                 >Get Connect out Online <br />
                 Consultation
               </v-card-title>
-              <v-card-subtitle class="DoctorSubTitle"
+              <v-card-subtitle class="DoctorSubTitle pb-6"
                 >Improve the quality of the services for Patient <br />
                 Happiness.</v-card-subtitle
               >
-              <Basebutton title="Get Started" height="52" width="330" />
-              <div class="card-Border">
-                <v-divider
-                  :thickness="7"
-                  class="border-opacity-100 rounded-pill btn"
-                  width="134"
-                ></v-divider>
-              </div>
+              <router-link
+                to="/signup"
+                class="SignUp"
+                style="text-decoration: none"
+              >
+                <Basebutton title="Get Started" height="52" width="330" />
+              </router-link>
             </v-window-item>
 
             <v-window-item value="two">
@@ -52,18 +51,17 @@
                 >Consult only with a doctor <br />
                 you trust
               </v-card-title>
-              <v-card-subtitle class="DoctorSubTitle">
+              <v-card-subtitle class="DoctorSubTitle pb-6">
                 Improve the quality of the services for Patient <br />
                 Happiness.
               </v-card-subtitle>
-              <Basebutton title="Get Started" height="52" width="330" />
-              <div class="card-Border">
-                <v-divider
-                  :thickness="7"
-                  class="border-opacity-100 rounded-pill btn"
-                  width="134"
-                ></v-divider>
-              </div>
+              <router-link
+                to="/signup"
+                class="SignUp"
+                style="text-decoration: none"
+              >
+                <Basebutton title="Get Started" height="52" width="330" />
+              </router-link>
             </v-window-item>
 
             <v-window-item value="three">
@@ -71,18 +69,17 @@
                 >Find a lot specialist doctors <br />
                 in one place
               </v-card-title>
-              <v-card-subtitle class="DoctorSubTitle"
+              <v-card-subtitle class="DoctorSubTitle pb-6"
                 >Improve the quality of the services for Patient <br />
                 Happiness.</v-card-subtitle
               >
-              <Basebutton title="Get Started" height="52" width="330" />
-              <div class="card-Border">
-                <v-divider
-                  :thickness="7"
-                  class="border-opacity-100 rounded-pill btn"
-                  width="134"
-                ></v-divider>
-              </div>
+              <router-link
+                to="/signup"
+                class="SignUp"
+                style="text-decoration: none"
+              >
+                <Basebutton title="Get Started" height="52" width="330" />
+              </router-link>
             </v-window-item>
           </v-window>
         </v-card-text>
@@ -93,7 +90,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import Basebutton from "./Basebutton.vue";
+import Basebutton from "./BaseButton.vue";
 
 let tab = ref(null);
 </script>
@@ -107,11 +104,11 @@ let tab = ref(null);
     min-width: 0;
     margin-left: 8px;
     height: 10px;
-    background-color: #36454f;
+    background-color: #aeaeae;
     border-radius: 19px;
   }
   .NextSlide:hover {
-    background-color: #aeaeae;
+    background-color: #36454f;
   }
 }
 </style>

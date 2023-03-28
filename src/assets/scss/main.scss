@@ -7,29 +7,89 @@
 }
 .SplashOne {
   width: 393px;
+  height: 100%;
 }
 .DoctorImage {
-  width: 361px;
+  width: 100%;
 }
 
 .DoctorTitle {
-  @include commoncode;
+  @include Font-properties;
   font-weight: 400;
   font-size: 24px;
   line-height: 24px;
   padding-top: 32px;
 }
 .DoctorSubTitle {
-  @include commoncode;
+  @include Font-properties;
   font-weight: 400;
   font-size: 16px;
   line-height: 23px;
   padding-top: 26px;
-  color: #76848d;
+  padding-bottom: 20px;
+  color: $Font-color;
 }
-.card-Border {
-  @include gridbox;
-  border-radius: 100px;
-  padding-bottom: 19px;
-  padding-top: 88px;
+.Signup {
+  width: 393px;
+}
+.SignupHeading {
+  display: flex;
+  padding: 20px 0;
+  img {
+    height: 18.75px;
+    width: 18.75px;
+    cursor: pointer;
+  }
+  p {
+    @include Font-properties;
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 18px;
+    color: $Text-color;
+  }
+}
+.GenderSelect {
+  @include Font-properties;
+  width: 345px;
+  height: 45px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 16px;
+  color: $Font-color;
+  margin-top: 8px;
+  padding: 8px;
+}
+.Baseinputlabel {
+  @include Font-properties;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 14px;
+  color: $Text-color;
+}
+.WeightHeight {
+  @include Flex-properties;
+}
+.WeightAndheightInput {
+  width: 49%;
+}
+.Terms {
+  input {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #6e6b7b;
+  }
+  p {
+    @include Font-properties;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: $Font-color;
+    span {
+      font-weight: 600;
+      color: $Text-color;
+    }
+  }
 }
