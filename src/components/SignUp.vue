@@ -71,7 +71,9 @@
               </div>
             </v-col>
             <v-col>
-              <BaseButton title="Next" height="52" width="330" />
+              <router-link to="/PersonalInfo" style="text-decoration: none"
+                ><BaseButton title="Next" height="52" width="330"
+              /></router-link>
             </v-col>
           </v-row>
         </v-form>
