@@ -1,12 +1,21 @@
 <template>
   <div class="Baseinput">
-    <input class="SingupInput" :placeholder="placeholder" />
+    <input
+      class="SingupInput"
+      :model-value="modelValue"
+      @input="
+        $emit('update:modelValue', ($event.target as HTMLInputElement).value)
+      "
+      :placeholder="placeholder"
+    />
   </div>
 </template>
 <script setup lang="ts">
 const props = defineProps<{
   placeholder: string;
+  modelValue: string;
 }>();
+const emit = defineEmits(["update:modelValue"]);
 </script>
 <style scoped lang="scss">
 .Baseinput input {

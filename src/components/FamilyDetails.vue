@@ -10,28 +10,37 @@
           <p class="mx-auto">Add Your Family Details</p>
         </v-card-title>
         <v-divider class="mx-auto" width="361"></v-divider>
-        <v-form>
+        <v-form @submit.prevent="FamilyDetails">
           <v-row class="d-block py-6">
             <v-col class="SignupInputfield pt-0">
               <label for="" class="Baseinputlabel">First Name</label>
               <div class="d-flex justify-space-between">
-                <BaseInput class="mr-1" placeholder="First Name" />
-                <BaseInput class="ml-1" placeholder="Last Name" />
+                <BaseInput
+                  v-model="firstName"
+                  class="mr-1"
+                  placeholder="First Name"
+                />
+                <BaseInput
+                  v-model="lastName"
+                  class="ml-1"
+                  placeholder="Last Name"
+                />
               </div>
             </v-col>
 
             <v-col class="SignupInputfield">
               <label for="" class="Baseinputlabel">Date of Birth</label>
               <div class="d-flex justify-space-between">
-                <BaseInput class="mr-1" placeholder="Day" />
-                <BaseInput class="" placeholder="Month" />
-                <BaseInput class="ml-1" placeholder="Year" />
+                <BaseInput v-model="day" class="mr-1" placeholder="Day" />
+                <BaseInput v-model="month" class="" placeholder="Month" />
+                <BaseInput v-model="year" class="ml-1" placeholder="Year" />
               </div>
             </v-col>
             <v-col class="SignupInputfield pt-0">
               <label for="" class="Baseinputlabel">Dieases</label>
               <div class="MultipleSelect">
                 <v-select
+                  v-model="Dieases"
                   label="Select Here"
                   :items="['Cancer', 'Stroke', 'Mental illness']"
                   multiple
@@ -41,16 +50,24 @@
             <v-col class="SignupInputfield pt-0">
               <label for="" class="Baseinputlabel">Child One Information</label>
               <div class="d-flex justify-space-between">
-                <BaseInput class="mr-1" placeholder="First Name" />
-                <BaseInput class="ml-1" placeholder="Last Name" />
+                <BaseInput
+                  v-model="firstName"
+                  class="mr-1"
+                  placeholder="First Name"
+                />
+                <BaseInput
+                  v-model="lastName"
+                  class="ml-1"
+                  placeholder="Last Name"
+                />
               </div>
             </v-col>
             <v-col class="SignupInputfield">
               <label for="" class="Baseinputlabel">Date of Birth</label>
               <div class="d-flex justify-space-between">
-                <BaseInput class="mr-1" placeholder="Day" />
-                <BaseInput class="" placeholder="Month" />
-                <BaseInput class="ml-1" placeholder="Year" />
+                <BaseInput v-model="day" class="mr-1" placeholder="Day" />
+                <BaseInput v-model="month" class="" placeholder="Month" />
+                <BaseInput v-model="year" class="ml-1" placeholder="Year" />
               </div>
             </v-col>
 
@@ -59,13 +76,19 @@
                 >Let us know in short Detail!</label
               >
               <v-textarea
+                v-model="Details"
                 label="Dieases"
                 variant="solo"
                 class="mt-3"
               ></v-textarea>
             </v-col>
             <v-col>
-              <BaseButton title="Next" height="52" width="330" />
+              <BaseButton
+                title="Next"
+                height="52"
+                width="330"
+                v-on:click="FamilyDetails"
+              />
             </v-col>
           </v-row>
         </v-form>
@@ -74,10 +97,43 @@
   </div>
 </template>
 <script setup lang="ts">
-import BaseInput from "..//components/BaseInput.vue";
-import BaseButton from "..//components/BaseButton.vue";
+import BaseInput from "../components/BaseInput.vue";
+import BaseButton from "../components/Basebutton.vue";
+import { ref } from "@vue/reactivity";
+import store from "../store/store";
+
+let firstName = ref("");
+let lastName = ref("");
+let day = ref("");
+let month = ref("");
+let year = ref("");
+let Dieases = ref([]);
+let Details = ref("");
+const FamilyDetails = () => {
+  if (
+    !firstName.value ||
+    !lastName.value ||
+    !day.value ||
+    !month.value ||
+    !year.value ||
+    !Dieases.value ||
+    !Details.value
+  ) {
+    alert("Please fill out all required fields.");
+    return;
+  } else {
+    store.dispatch("FamilyDetails", {
+      firstName: firstName.value,
+      lastName: lastName.value,
+      dob: day.value + "/" + month.value + "/" + year.value,
+      Dieases: Dieases.value,
+      Details: Details.value,
+    });
+  }
+};
 </script>
 <style lang="scss">
+@import "../assets/scss/var";
 .Family-Details {
   .v-field__outline {
     opacity: 0;
@@ -93,9 +149,9 @@ import BaseButton from "..//components/BaseButton.vue";
   }
   .v-field--variant-filled .v-field__overlay {
     opacity: 1;
-    background: White;
+    background: $white;
     border-radius: 12px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid $border-color;
     height: 48px;
     line-height: 14px;
   }

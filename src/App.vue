@@ -28,7 +28,7 @@ export default defineComponent({
   overflow-y: auto;
 }
 .Main-Container::-webkit-scrollbar {
-  width: 5px;
+  width: 0;
 }
 ::-webkit-scrollbar-track {
   background: white;
