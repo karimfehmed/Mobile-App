@@ -5,22 +5,22 @@
   padding: 0;
   box-sizing: border-box;
 }
-.SplashOne {
+.splash-one {
   width: 393px;
   height: 100%;
 }
-.DoctorImage {
+.doctor-images {
   width: 100%;
 }
 
-.DoctorTitle {
+.doctor-card-title {
   @include Font-properties;
   font-weight: 400;
   font-size: 24px;
   line-height: 24px;
   padding-top: 32px;
 }
-.DoctorSubTitle {
+.doctor-card-subTitle {
   @include Font-properties;
   font-weight: 400;
   font-size: 16px;
@@ -29,10 +29,10 @@
   padding-bottom: 20px;
   color: $Font-color;
 }
-.Signup {
+.signup-details {
   width: 393px;
 }
-.SignupHeading {
+.signup-heading {
   display: flex;
   padding: 20px 0;
   img {
@@ -49,7 +49,7 @@
     color: $Text-color;
   }
 }
-.GenderSelect {
+.gender-select {
   @include Font-properties;
   width: 345px;
   height: 45px;
@@ -62,14 +62,14 @@
   margin-top: 8px;
   padding: 8px;
 }
-.Baseinputlabel {
+.baseinputlabel {
   @include Font-properties;
   font-weight: 600;
   font-size: 14px;
   line-height: 14px;
   color: $Text-color;
 }
-.WeightHeight {
+.weightheight {
   @include Flex-properties;
 }
 .WeightAndheightInput {
@@ -94,6 +94,6 @@
   }
 }
 
-.Family-Details {
-  width: 393px;
-}
+// .family-details-card {
+//   width: 393px;
+// }

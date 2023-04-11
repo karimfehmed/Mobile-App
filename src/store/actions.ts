@@ -1,7 +1,12 @@
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
 import db from "../firebaseInit";
 import router from "../router";
-import type { signUpData, personalDetails, familyDetails } from "../types";
+import type {
+  signUpData,
+  personalDetails,
+  familyDetails,
+  doctorsDetails,
+} from "../types";
 export default {
   singnUpForm: ({}, payload: signUpData) => {
     const docRef = addDoc(collection(db, "PatientDetails"), payload)
@@ -27,10 +32,23 @@ export default {
     const docRef = addDoc(collection(db, "PatientDetails"), payload)
       .then((response) => {
         console.log("Document written with ID: ", response.id);
-        router.push({ name: "familyDetails" });
+        router.push({ name: "newuser" });
       })
       .catch((error) => {
         console.error("Error adding document: ", error);
       });
+  },
+
+  getSpecialist: ({}, payload: string) => {
+    const q = query(
+      collection(db, "Doctors"),
+      where("specialization", "==", "Dentist")
+    );
+    getDocs(q).then((snap) => {
+      console.log(snap.docs);
+      snap.docs.forEach((doc) => {
+        console.log(doc.data());
+      });
+    });
   },
 };

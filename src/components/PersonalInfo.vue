@@ -2,8 +2,8 @@
   <div class="bg-background d-flex">
     <v-sheet class="Personal-info">
       <img src="../assets/images/splashFrame.png" alt="Frame" />
-      <v-card class="px-6">
-        <v-card-title class="SignupHeading mb-5">
+      <v-card class="px-6" flat>
+        <v-card-title class="signup-heading mb-5">
           <router-link to="/signup">
             <img src="../assets/icons/back.png" alt="Logo" class="Backicon" />
           </router-link>
@@ -11,17 +11,17 @@
         </v-card-title>
         <v-divider class="mx-auto" width="361"></v-divider>
         <v-form @submit.prevent="PersonalDetails">
-          <v-row class="d-block py-6">
-            <v-col class="SignupInputfield pt-0">
-              <label for="" class="Baseinputlabel">Are You Married</label>
+          <v-row class="d-block">
+            <v-col class="SignupInputfield pt-6">
+              <label for="" class="baseinputlabel">Are You Married</label>
               <RadioButton label="Yes" v-model="Married" />
             </v-col>
-            <v-col class="SignupInputfield pt-0">
-              <label for="" class="Baseinputlabel">Do You Have Child</label>
+            <v-col class="SignupInputfield pt-2">
+              <label for="" class="baseinputlabel">Do You Have Child</label>
               <RadioButton label="Yes" v-model="Child" />
             </v-col>
-            <v-col class="SignupInputfield pt-0">
-              <label for="" class="Baseinputlabel">How many child ---</label>
+            <v-col class="SignupInputfield pt-2">
+              <label for="" class="baseinputlabel">How many child ---</label>
               <div class="md-3">
                 <BaseInput
                   v-model="noOfChilds"
@@ -30,21 +30,21 @@
                 />
               </div>
             </v-col>
-            <v-col class="SignupInputfield pt-0">
-              <label for="" class="Baseinputlabel">Do You Somke?</label>
+            <v-col class="SignupInputfield">
+              <label for="" class="baseinputlabel">Do You Somke?</label>
               <RadioButton label="Yes" v-model="Smoke" />
             </v-col>
-            <v-col class="SignupInputfield pt-0">
-              <label for="" class="Baseinputlabel"
+            <v-col class="SignupInputfield pt-2">
+              <label for="" class="baseinputlabel"
                 >Do You Use Tobacoo Products?</label
               >
               <RadioButton label="Yes" v-model="tobacooProducts" />
             </v-col>
-            <v-col class="SignupInputfield pt-0">
-              <label for="" class="Baseinputlabel">Do You Use Alcohol?</label>
+            <v-col class="SignupInputfield pt-2 pb-0">
+              <label for="" class="baseinputlabel">Do You Use Alcohol?</label>
               <RadioButton label="Yes" v-model="Alcohol" />
             </v-col>
-            <v-col>
+            <v-col class="mt-6 mb-6">
               <BaseButton
                 title="Next"
                 height="52"
@@ -98,5 +98,8 @@ const PersonalDetails = () => {
 <style lang="scss" scoped>
 .NoOfChilds {
   width: 100px;
+}
+.SignupInputfield {
+  padding-top: 0px;
 }
 </style>

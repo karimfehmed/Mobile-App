@@ -1,8 +1,11 @@
 <template>
   <v-app>
-    <v-main class="mx-auto">
-      <router-view class="Main-Container"></router-view>
-    </v-main>
+    <v-layout class="main-layout">
+      <v-main class="main-container mx-auto bg-white">
+        <router-view class="main-view"></router-view>
+      </v-main>
+      <router-view name="BottomNavbar"></router-view>
+    </v-layout>
   </v-app>
 </template>
 
@@ -22,12 +25,19 @@ export default defineComponent({
 });
 </script>
 <style scoped lang="scss">
-.Main-Container {
+.main-layout {
+  position: fixed;
+  width: 393px;
+  margin: auto;
+}
+.main-container {
+  width: 393px;
   height: 100vh;
+  margin: auto;
   overflow-x: hidden;
   overflow-y: auto;
 }
-.Main-Container::-webkit-scrollbar {
+.main-container::-webkit-scrollbar {
   width: 0;
 }
 ::-webkit-scrollbar-track {

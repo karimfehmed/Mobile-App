@@ -1,13 +1,14 @@
 <template>
   <div class="d-flex justify-center Button">
-    <v-btn class="cardButton" :height="height" :width="width">{{
-      title
-    }}</v-btn>
+    <v-btn class="cardButton" :height="height" :width="width"
+      >{{ title }}
+      <slot name="ButtonText"></slot>
+    </v-btn>
   </div>
 </template>
 <script setup lang="ts">
 const props = defineProps<{
-  title: string;
+  title?: string;
   width: string;
   height: string;
 }>();

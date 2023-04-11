@@ -1,9 +1,9 @@
 <template>
   <div class="bg-background d-flex">
-    <v-sheet class="Family-Details">
+    <v-sheet class="family-details-card">
       <img src="../assets/images/splashFrame.png" alt="Frame" />
       <v-card class="px-6">
-        <v-card-title class="SignupHeading mb-5">
+        <v-card-title class="signup-heading mb-5">
           <router-link to="/PersonalInfo">
             <img src="../assets/icons/back.png" alt="Logo" class="Backicon" />
           </router-link>
@@ -13,7 +13,7 @@
         <v-form @submit.prevent="FamilyDetails">
           <v-row class="d-block py-6">
             <v-col class="SignupInputfield pt-0">
-              <label for="" class="Baseinputlabel">First Name</label>
+              <label for="" class="baseinputlabel">First Name</label>
               <div class="d-flex justify-space-between">
                 <BaseInput
                   v-model="firstName"
@@ -29,7 +29,7 @@
             </v-col>
 
             <v-col class="SignupInputfield">
-              <label for="" class="Baseinputlabel">Date of Birth</label>
+              <label for="" class="baseinputlabel">Date of Birth</label>
               <div class="d-flex justify-space-between">
                 <BaseInput v-model="day" class="mr-1" placeholder="Day" />
                 <BaseInput v-model="month" class="" placeholder="Month" />
@@ -37,7 +37,7 @@
               </div>
             </v-col>
             <v-col class="SignupInputfield pt-0">
-              <label for="" class="Baseinputlabel">Dieases</label>
+              <label for="" class="baseinputlabel">Dieases</label>
               <div class="MultipleSelect">
                 <v-select
                   v-model="Dieases"
@@ -48,7 +48,7 @@
               </div>
             </v-col>
             <v-col class="SignupInputfield pt-0">
-              <label for="" class="Baseinputlabel">Child One Information</label>
+              <label for="" class="baseinputlabel">Child One Information</label>
               <div class="d-flex justify-space-between">
                 <BaseInput
                   v-model="firstName"
@@ -63,7 +63,7 @@
               </div>
             </v-col>
             <v-col class="SignupInputfield">
-              <label for="" class="Baseinputlabel">Date of Birth</label>
+              <label for="" class="baseinputlabel">Date of Birth</label>
               <div class="d-flex justify-space-between">
                 <BaseInput v-model="day" class="mr-1" placeholder="Day" />
                 <BaseInput v-model="month" class="" placeholder="Month" />
@@ -72,15 +72,14 @@
             </v-col>
 
             <v-col class="DieasesInformation">
-              <label for="" class="Baseinputlabel"
+              <label for="" class="baseinputlabel"
                 >Let us know in short Detail!</label
               >
-              <v-textarea
+              <textarea
+                placeholder="Dieases"
+                class="dieases-details"
                 v-model="Details"
-                label="Dieases"
-                variant="solo"
-                class="mt-3"
-              ></v-textarea>
+              />
             </v-col>
             <v-col>
               <BaseButton
@@ -134,7 +133,7 @@ const FamilyDetails = () => {
 </script>
 <style lang="scss">
 @import "../assets/scss/var";
-.Family-Details {
+.family-details-card {
   .v-field__outline {
     opacity: 0;
   }
@@ -155,5 +154,21 @@ const FamilyDetails = () => {
     height: 48px;
     line-height: 14px;
   }
+  .v-text-field .v-field {
+    margin: 0;
+  }
+  .v-input__control {
+    width: auto;
+  }
+}
+
+.dieases-details {
+  border: 1px solid #e0e0e0;
+  width: 100%;
+  min-height: 100px;
+  padding: 10px;
+  outline: none;
+  margin-top: 8px;
+  border-radius: 14px;
 }
 </style>

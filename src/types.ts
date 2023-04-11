@@ -32,3 +32,8 @@ export type familyDetails = {
   Dieases?: Array<string>;
   Details?: string;
 };
+export type doctorsDetails = {
+  name: string;
+  specialization: string;
+  date: Date;
+};

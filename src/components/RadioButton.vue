@@ -1,11 +1,11 @@
 <template>
   <v-radio-group class="d-flex RadioSelect">
     <div class="d-flex">
-      <span class="InfoRadio pt-4">
+      <span class="InfoRadio">
         <v-radio class="RadioButton" value="1" name="testing"></v-radio>
         <label for="" class="RadioLabel">Yes</label>
       </span>
-      <span class="InfoRadio pt-4">
+      <span class="InfoRadio">
         <v-radio class="RadioButton pl-1" value="2" name="testing"></v-radio>
         <label for="" class="RadioLabel">No</label>
       </span>

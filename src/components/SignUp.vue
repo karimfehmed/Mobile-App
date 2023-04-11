@@ -1,9 +1,9 @@
 <template>
   <div class="bg-background d-flex">
-    <v-sheet class="Signup">
+    <v-sheet class="signup-details">
       <img src="../assets/images/splashFrame.png" alt="Frame" />
       <v-card class="px-6">
-        <v-card-title class="SignupHeading mb-5">
+        <v-card-title class="signup-heading mb-5">
           <router-link to="/">
             <img src="../assets/icons/back.png" alt="Logo" class="Backicon" />
           </router-link>
@@ -13,7 +13,7 @@
         <v-form @submit.prevent="singnUpForm">
           <v-row class="d-block py-6">
             <v-col class="SignupInputfield pt-0">
-              <label for="" class="Baseinputlabel">First Name</label>
+              <label for="" class="baseinputlabel">First Name</label>
               <div class="d-flex justify-space-between">
                 <BaseInput
                   required
@@ -29,13 +29,13 @@
               </div>
             </v-col>
             <v-col class="SignupInputfield pt-0">
-              <label for="" class="Baseinputlabel">E-mail</label>
+              <label for="" class="baseinputlabel">E-mail</label>
               <div>
                 <BaseInput v-model="email" placeholder="Enter your email" />
               </div>
             </v-col>
             <v-col class="SignupInputfield pt-0">
-              <label for="" class="Baseinputlabel">Phone Number</label>
+              <label for="" class="baseinputlabel">Phone Number</label>
               <div>
                 <BaseInput
                   v-model="phoneNumber"
@@ -44,9 +44,9 @@
               </div>
             </v-col>
             <v-col class="SignupInputfield pt-0">
-              <label for="" class="Baseinputlabel">Gender</label>
+              <label for="" class="baseinputlabel">Gender</label>
               <div>
-                <select class="GenderSelect" v-model="gender">
+                <select class="gender-select" v-model="gender">
                   <option value="">Select your gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
@@ -55,20 +55,20 @@
               </div>
             </v-col>
             <v-col class="SignupInputfield">
-              <label for="" class="Baseinputlabel">Date of Birth</label>
+              <label for="" class="baseinputlabel">Date of Birth</label>
               <div class="d-flex justify-space-between">
                 <BaseInput v-model="day" class="mr-1" placeholder="Day" />
                 <BaseInput v-model="month" class="" placeholder="Month" />
                 <BaseInput v-model="year" class="ml-1" placeholder="Year" />
               </div>
             </v-col>
-            <v-col class="WeightHeight">
+            <v-col class="weightheight">
               <div class="WeightAndheightInput">
-                <label for="" class="Baseinputlabel">Height</label>
+                <label for="" class="baseinputlabel">Height</label>
                 <BaseInput v-model="height" class="" placeholder="In inches" />
               </div>
               <div class="WeightAndheightInput">
-                <label for="" class="Baseinputlabel">Weight</label>
+                <label for="" class="baseinputlabel">Weight</label>
                 <BaseInput v-model="weight" class="" placeholder="In KGs" />
               </div>
             </v-col>

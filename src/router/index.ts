@@ -3,6 +3,8 @@ import Splash from "../components/Splash.vue";
 import Signup from "../components/SignUp.vue";
 import PersonalInfo from "../components/PersonalInfo.vue";
 import FamilyDetails from "../components/FamilyDetails.vue";
+import NewUser from "../components/NewUser.vue";
+import BottomNavbar from "../components/BottomNavbar.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -23,6 +25,14 @@ const router = createRouter({
       path: "/familydetails",
       component: FamilyDetails,
       name: "familyDetails",
+    },
+    {
+      path: "/newuser",
+      name: "newuser",
+      components: {
+        default: NewUser,
+        BottomNavbar: BottomNavbar,
+      },
     },
   ],
 });
