@@ -16,7 +16,7 @@ const props = defineProps<{
 
 <style scoped lang="scss">
 .cardButton {
-  text-transform: capitalize;
+  text-transform: initial;
   background-color: #cc5500;
   border-radius: 12px;
   box-shadow: none;

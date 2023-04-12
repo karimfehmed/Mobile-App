@@ -6,22 +6,133 @@
         class="dosctors-list-content ml-3 d-flex flex-column justify-space-between"
       >
         <div class="d-flex justify-space-between">
-          <h4>Dr. Aman Bumrow</h4>
+          <h4>{{ doctorname }}</h4>
           <img src="../assets/icons/Like.svg" alt="" />
         </div>
 
-        <h2>Cardiovascular</h2>
+        <h2>{{ specialtization }}</h2>
         <div>
-          <p><img src="../assets/icons/star.svg" alt="" /> 4.8 / 177 Reviews</p>
+          <p><img src="../assets/icons/star.svg" alt="" /> {{ reviews }}</p>
         </div>
       </div>
     </div>
-    <v-btn class="profile-details-button text-primary-color" flat
-      >View Profile Details</v-btn
-    >
+    <v-card-actions class="pb-0">
+      <v-btn
+        @click="show = !show"
+        class="profile-details-button text-primary-color"
+        flat
+      >
+        View Profile Details</v-btn
+      >
+    </v-card-actions>
+
+    <v-expand-transition>
+      <div v-show="show">
+        <v-divider></v-divider>
+        <div class="profile-detail-icons d-flex justify-space-around pb-2">
+          <p class="d-flex flex-column align-center">
+            <img src="../assets/icons/patient.svg" alt="" />
+            <span>{{ patients }}</span>
+            <br />
+            Patients
+          </p>
+          <p class="d-flex flex-column align-center">
+            <img src="../assets/icons/experience.svg" alt="" />
+            <span>{{ experience }}</span>
+            <br />
+            Experience
+          </p>
+          <p class="d-flex flex-column align-center">
+            <img src="../assets/icons/rating stra.svg" alt="" />
+            <span>{{ rating }}</span>
+            <br />
+            Rating
+          </p>
+          <p class="d-flex flex-column align-center">
+            <img src="../assets/icons/reviews.svg" alt="" />
+            <span>{{ totalreviews }}</span>
+            <br />
+            Reviews
+          </p>
+        </div>
+        <v-divider></v-divider>
+        <div class="dentist">
+          <v-card-text class="doctor-details">
+            <h4 class="pl-0">About me</h4>
+            {{ aboutdoctor }}
+          </v-card-text>
+          <div class="pl-3 pb-2">
+            <h4>Work Time</h4>
+            <div class="work-time d-flex align-center justify-center mt-2">
+              <p>{{ worktime }}</p>
+            </div>
+          </div>
+          <v-divider></v-divider>
+          <div class="clinical-informatnion pl-3 pt-2">
+            <h4>Clinic Information</h4>
+            <div class="d-flex justify-space-between pt-2">
+              <span>Clinic Name</span>
+              <p>Aziza Clinic</p>
+            </div>
+            <div class="d-flex justify-space-between pt-2">
+              <span>Clinic Address</span>
+              <p>Syedeny, Australia</p>
+            </div>
+            <div class="d-flex justify-space-between pt-2">
+              <span>Clinic Email</span>
+              <p>Clinic@gmail.com</p>
+            </div>
+          </div>
+          <v-divider></v-divider>
+          <div class="education pl-3 pt-2">
+            <h4>Education</h4>
+            <div class="d-flex justify-space-between pt-2">
+              <span>Degree</span>
+              <p>
+                MBBS,Sydney college <br />
+                and university
+              </p>
+            </div>
+          </div>
+          <div class="serviceandspecialization pl-3 pt-2">
+            <h4>Service and Specialization</h4>
+
+            <v-divider></v-divider>
+            <div class="d-flex justify-space-between pt-2">
+              <span>Service</span>
+              <p>Medicare</p>
+            </div>
+            <div class="d-flex justify-space-between pt-2">
+              <span>Specialization</span>
+              <p>Childern care</p>
+            </div>
+          </div>
+        </div>
+        <div class="pt-8 pb-8">
+          <BaseButton title="Book an Appoinment" height="45" width="340" />
+        </div>
+      </div>
+    </v-expand-transition>
   </v-card>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "@vue/reactivity";
+import BaseButton from "./Basebutton.vue";
+
+let show = ref(false);
+
+const props = defineProps<{
+  doctorname: string;
+  specialtization: string;
+  reviews: string;
+  patients: string;
+  experience: string;
+  rating: string;
+  totalreviews: string;
+  aboutdoctor: string;
+  worktime: string;
+}>();
+</script>
 <style lang="scss">
 .doctors-list {
   width: 361px;
@@ -68,4 +179,156 @@
   width: 100%;
   background: #fcf7f0;
 }
+.profile-detail-icons {
+  img {
+    height: 70px;
+    width: 40px;
+  }
+  span {
+    font-family: "Proxima Nova";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    color: #36454f;
+  }
+  p {
+    font-family: "Proxima Nova";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #76848d;
+  }
+}
+.dentist {
+  font-family: "Proxima Nova";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  color: #76848d;
+  p {
+    font-family: "Proxima Nova";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    color: #36454f;
+    padding: 8px 8px;
+  }
+  h4 {
+    font-family: "Proxima Nova";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    color: #36454f;
+  }
+  span {
+    font-family: "Proxima Nova";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 14px;
+    color: #36454f;
+  }
+}
+
+.work-time {
+  width: 297px;
+  height: 47px;
+  border-radius: 14px;
+  border: 1px solid #36454f;
+  p {
+    font-family: "Proxima Nova";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    color: #76848d;
+  }
+}
+// .clinical-informatnion {
+//   padding: 10px;
+//   h4 {
+//     font-family: "Proxima Nova";
+//     font-style: normal;
+//     font-weight: 600;
+//     font-size: 16px;
+//     line-height: 16px;
+//     color: #36454f;
+//   }
+//   span {
+//     font-family: "Proxima Nova";
+//     font-style: normal;
+//     font-weight: 400;
+//     font-size: 16px;
+//     line-height: 16px;
+//     color: #36454f;
+//   }
+//   p {
+//     font-family: "Proxima Nova";
+//     font-style: normal;
+//     font-weight: 400;
+//     font-size: 14px;
+//     line-height: 14px;
+//     text-align: center;
+//     color: #76848d;
+//   }
+// }
+// .education {
+//   padding: 10px;
+//   h4 {
+//     font-family: "Proxima Nova";
+//     font-style: normal;
+//     font-weight: 600;
+//     font-size: 16px;
+//     line-height: 16px;
+//     color: #36454f;
+//   }
+//   span {
+//     font-family: "Proxima Nova";
+//     font-style: normal;
+//     font-weight: 400;
+//     font-size: 16px;
+//     line-height: 16px;
+//     color: #36454f;
+//   }
+//   p {
+//     font-family: "Proxima Nova";
+//     font-style: normal;
+//     font-weight: 400;
+//     font-size: 14px;
+//     line-height: 14px;
+//     text-align: center;
+//     color: #76848d;
+//   }
+// }
+// .serviceandspecialization {
+//   padding: 10px;
+//   h4 {
+//     font-family: "Proxima Nova";
+//     font-style: normal;
+//     font-weight: 600;
+//     font-size: 16px;
+//     line-height: 16px;
+//     color: #36454f;
+//     padding-bottom: 8px;
+//   }
+//   span {
+//     font-family: "Proxima Nova";
+//     font-style: normal;
+//     font-weight: 400;
+//     font-size: 16px;
+//     line-height: 16px;
+//     color: #36454f;
+//   }
+//   p {
+//     font-family: "Proxima Nova";
+//     font-style: normal;
+//     font-weight: 400;
+//     font-size: 14px;
+//     line-height: 14px;
+//     text-align: center;
+//     color: #76848d;
+//   }
+// }
 </style>

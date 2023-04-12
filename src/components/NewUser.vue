@@ -18,24 +18,23 @@
             <img src="../assets/icons/likenot.svg" alt="" />
           </div>
         </div>
-        <div class="head-input d-flex pt-6 pb-6">
-          <div class="Search d-flex mx-auto mr-0">
-            <img src="../assets/icons/Search.svg" alt="" />
-            <input type="text" placeholder="Search" v-model="newtest" />
-          </div>
-          <v-divider :thickness="6" vertical></v-divider>
-          <div class="all-doctors select-box-container mx-auto ml-0">
-            <v-select
-              class="select-box"
-              placeholder="All"
-              v-model="newtest"
-              :items="items"
-            ></v-select>
-          </div>
-        </div>
+        <specializationsearch>
+          <template #seachValue="searchText">
+            <img
+              @click="search(searchText)"
+              src="../assets/icons/Search.svg"
+              alt=""
+            />
+          </template>
+        </specializationsearch>
       </div>
       <div class="pt-3">
-        <Appoiments />
+        <Appoiments
+          doctorname="Dr. Muhamme Syahid"
+          date="01/04/98"
+          specialtization="Heart Specialist"
+          time="02:00"
+        />
       </div>
       <div class="medical-checks mt-3">
         <h1>Medical Checks!</h1>
@@ -51,18 +50,27 @@
         <p class="pl-4 pt-5">Doctor Speciality</p>
         <div class="doctor-speciality-icons d-flex justify-space-around pt-5">
           <div class="icon-box">
-            <v-icon class="speciality-icon"
-              ><img
-                class="icon-image"
-                src="../assets/icons/tooth-whitening.svg"
-                alt=""
-            /></v-icon>
+            <v-icon class="speciality-icon">
+              <router-link to="/dentist">
+                <img
+                  class="icon-image"
+                  src="../assets/icons/tooth-whitening.svg"
+                  alt=""
+                />
+              </router-link>
+            </v-icon>
             <p>Dentist</p>
           </div>
           <div class="icon-box">
-            <v-icon class="speciality-icon"
-              ><img class="icon-image" src="../assets/icons/user 1.svg" alt=""
-            /></v-icon>
+            <v-icon class="speciality-icon">
+              <router-link to="/generalphysician">
+                <img
+                  class="icon-image"
+                  src="../assets/icons/user 1.svg"
+                  alt=""
+                />
+              </router-link>
+            </v-icon>
             <p>General</p>
           </div>
           <div class="icon-box">
@@ -123,7 +131,17 @@
       <div class="pt-8 pb-8">
         <BaseButton title="Book an Appoinment" height="50" width="361" />
       </div>
-      <DoctorsList />
+      <DoctorsList
+        patients="5000+"
+        rating="4.8"
+        experience="10+"
+        totalreviews="4,942"
+        reviews="5.0 / 177 Reviews"
+        doctorname="Naheed"
+        specialtization="Dentist"
+        aboutdoctor="Dr. Aman Bumrow is the top most Immunologist specialist in christ Hospital at London. She achived several awards for her wonderful contribution in medical field. She is available for private consultation."
+        worktime="Monday - Friday , 08:00 AM - 20:00 PM"
+      />
     </v-sheet>
   </div>
 </template>
@@ -133,8 +151,8 @@ import BaseButton from "./Basebutton.vue";
 import DoctorsList from "./DoctorsList.vue";
 import Appoiments from "./Appoiments.vue";
 import store from "../store/store";
-import { collection, query, where } from "@firebase/firestore";
-import db from "../firebaseInit";
+import specializationsearch from "./specializationsearch.vue";
+import console from "console";
 let doctor = ref("");
 let newtest = ref("");
 let items = ref([
@@ -148,60 +166,12 @@ let items = ref([
   "Cardiologist",
 ]);
 
-let test = () => {
-  console.log(doctor);
-  alert(doctor);
+let search = (searchText: string) => {
+  console.log(searchText);
 };
 store.dispatch("getSpecialist");
 </script>
-<style lang="scss">
-.Search {
-  border: 1px solid black;
-  border-radius: 100px 0px 0px 100px;
-  width: 270.5px;
-  height: 48px;
-  background-color: white;
-  input {
-    outline: none;
-    width: 100%;
-    height: 100%;
-    color: #36454f;
-  }
-  img {
-    padding: 12px 16px;
-  }
-
-  .select-box {
-    width: 50px;
-  }
-}
-.head-input {
-  .v-select .v-field .v-text-field__prefix,
-  .v-select .v-field .v-text-field__suffix,
-  .v-select .v-field .v-field__input,
-  .v-select .v-field.v-field {
-    color: #36454f;
-  }
-  .v-select__selection-text {
-    display: none;
-  }
-  .v-select__selection::before {
-    content: "All";
-    width: 100%;
-    height: 100%;
-    color: #36454f;
-  }
-}
-
-.all-doctors {
-  border: 1px solid black;
-  overflow: hidden;
-  width: 100px;
-  height: 48px;
-  background: white;
-  border-radius: 0px 100px 100px 0px;
-}
-
+<style lang="scss" scoped>
 .doctors-dropdown {
   width: 100%;
   height: 100%;

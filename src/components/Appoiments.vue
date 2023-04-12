@@ -3,8 +3,8 @@
     <div class="appoiment-card-content d-flex px-4 py-4">
       <img src="../assets/images/dr ayesha.png" alt="" />
       <div class="pl-2">
-        <h1>Dr. Muhamme Shayid</h1>
-        <p>Heart Specialist</p>
+        <h1>{{ doctorname }}</h1>
+        <p>{{ specialtization }}</p>
       </div>
     </div>
     <div>
@@ -15,14 +15,14 @@
               <img src="../assets/icons/calender.svg" alt="#" /><span
                 class="pl-2"
               >
-                Monday,July 29
+                {{ date }}
               </span>
             </p>
             <p class="d-flex align-center pl-2">
               <img src="../assets/icons/appmntclock.svg" alt="#" /><span
                 class="pl-2"
               >
-                11:00 - 12:00 AM
+                {{ time }}
               </span>
             </p>
           </div>
@@ -33,6 +33,12 @@
 </template>
 <script lang="ts" setup>
 import BaseButton from "./Basebutton.vue";
+const props = defineProps<{
+  doctorname: string;
+  specialtization: string;
+  date: string;
+  time: string;
+}>();
 </script>
 <style lang="scss" scoped>
 .doctor-appoiment-cards {
