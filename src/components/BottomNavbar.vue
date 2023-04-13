@@ -4,10 +4,14 @@
     location="bottom"
   >
     <v-btn>
-      <img src="../assets/icons/home.svg" alt="" />
+      <router-link to="/newuser">
+        <img src="../assets/icons/home.svg" alt="" />
+      </router-link>
     </v-btn>
     <v-btn>
-      <img src="../assets/icons/clock.svg" alt="" />
+      <router-link to="/allappoiments">
+        <img src="../assets/icons/clock.svg" alt="" />
+      </router-link>
     </v-btn>
     <v-btn>
       <img src="../assets/icons/medic.svg" alt="" />

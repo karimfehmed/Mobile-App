@@ -74,47 +74,60 @@
             <p>General</p>
           </div>
           <div class="icon-box">
-            <v-icon class="speciality-icon"
-              ><img
-                class="icon-image"
-                src="../assets/icons/healthy-food 1.svg"
-                alt=""
-            /></v-icon>
+            <v-icon class="speciality-icon">
+              <router-link to="/nutrition">
+                <img
+                  class="icon-image"
+                  src="../assets/icons/healthy-food 1.svg"
+                  alt=""
+                />
+              </router-link>
+            </v-icon>
             <p>Nutrition</p>
           </div>
           <div class="icon-box">
-            <v-icon class="speciality-icon"
-              ><img
+            <v-icon class="speciality-icon">
+              <img
                 class="icon-image"
                 src="../assets/icons/consultation 1.svg"
                 alt=""
-            /></v-icon>
+              />
+            </v-icon>
             <p>Online Visit</p>
           </div>
         </div>
         <div class="doctor-speciality-icons d-flex justify-space-around pt-5">
           <div class="icon-box">
             <v-icon class="speciality-icon"
-              ><img class="icon-image" src="../assets/icons/brain 1.svg" alt=""
-            /></v-icon>
+              ><router-link to="/neurologist">
+                <img
+                  class="icon-image"
+                  src="../assets/icons/brain 1.svg"
+                  alt=""
+                /> </router-link
+            ></v-icon>
             <p>Neurology</p>
           </div>
           <div class="icon-box">
             <v-icon class="speciality-icon"
-              ><img
-                class="icon-image"
-                src="../assets/icons/eye-care 1.svg"
-                alt=""
-            /></v-icon>
+              ><router-link to="/opthal">
+                <img
+                  class="icon-image"
+                  src="../assets/icons/eye-care 1.svg"
+                  alt=""
+                /> </router-link
+            ></v-icon>
             <p>Opthal...</p>
           </div>
           <div class="icon-box">
             <v-icon class="speciality-icon"
-              ><img
-                class="icon-image"
-                src="../assets/icons/pediatrician 1.svg"
-                alt=""
-            /></v-icon>
+              ><router-link to="/pediatic">
+                <img
+                  class="icon-image"
+                  src="../assets/icons/pediatrician 1.svg"
+                  alt=""
+                /> </router-link
+            ></v-icon>
             <p>Pediatric</p>
           </div>
           <div class="icon-box">
@@ -149,7 +162,7 @@
 import { ref } from "vue";
 import BaseButton from "./Basebutton.vue";
 import DoctorsList from "./DoctorsList.vue";
-import Appoiments from "./Appoiments.vue";
+import Appoiments from "./TodayAppoiments.vue";
 import store from "../store/store";
 import specializationsearch from "./specializationsearch.vue";
 import console from "console";

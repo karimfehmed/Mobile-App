@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="dentist-card pt-3">
+    <h1>Dentist</h1>
     <div class="dentists pt-4">
       <DoctorsList
         patients="5000+"
@@ -39,9 +40,23 @@
         worktime="Monday - Friday , 08:00 AM - 20:00 PM"
       />
     </div>
+    <bottomnavbar />
   </div>
 </template>
 <script setup lang="ts">
 import DoctorsList from "./DoctorsList.vue";
+import bottomnavbar from "./BottomNavbar.vue";
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.dentist-card {
+  h1 {
+    font-family: "Proxima Nova";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 18px;
+    color: #242424;
+    text-align: center;
+  }
+}
+</style>

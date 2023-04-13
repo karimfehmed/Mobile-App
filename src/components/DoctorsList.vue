@@ -16,15 +16,13 @@
         </div>
       </div>
     </div>
-    <v-card-actions class="pb-0">
-      <v-btn
-        @click="show = !show"
-        class="profile-details-button text-primary-color"
-        flat
-      >
-        View Profile Details</v-btn
-      >
-    </v-card-actions>
+    <v-btn
+      @click="show = !show"
+      class="profile-details-button text-primary-color"
+      flat
+    >
+      View Profile Details</v-btn
+    >
 
     <v-expand-transition>
       <div v-show="show">
@@ -246,89 +244,4 @@ const props = defineProps<{
     color: #76848d;
   }
 }
-// .clinical-informatnion {
-//   padding: 10px;
-//   h4 {
-//     font-family: "Proxima Nova";
-//     font-style: normal;
-//     font-weight: 600;
-//     font-size: 16px;
-//     line-height: 16px;
-//     color: #36454f;
-//   }
-//   span {
-//     font-family: "Proxima Nova";
-//     font-style: normal;
-//     font-weight: 400;
-//     font-size: 16px;
-//     line-height: 16px;
-//     color: #36454f;
-//   }
-//   p {
-//     font-family: "Proxima Nova";
-//     font-style: normal;
-//     font-weight: 400;
-//     font-size: 14px;
-//     line-height: 14px;
-//     text-align: center;
-//     color: #76848d;
-//   }
-// }
-// .education {
-//   padding: 10px;
-//   h4 {
-//     font-family: "Proxima Nova";
-//     font-style: normal;
-//     font-weight: 600;
-//     font-size: 16px;
-//     line-height: 16px;
-//     color: #36454f;
-//   }
-//   span {
-//     font-family: "Proxima Nova";
-//     font-style: normal;
-//     font-weight: 400;
-//     font-size: 16px;
-//     line-height: 16px;
-//     color: #36454f;
-//   }
-//   p {
-//     font-family: "Proxima Nova";
-//     font-style: normal;
-//     font-weight: 400;
-//     font-size: 14px;
-//     line-height: 14px;
-//     text-align: center;
-//     color: #76848d;
-//   }
-// }
-// .serviceandspecialization {
-//   padding: 10px;
-//   h4 {
-//     font-family: "Proxima Nova";
-//     font-style: normal;
-//     font-weight: 600;
-//     font-size: 16px;
-//     line-height: 16px;
-//     color: #36454f;
-//     padding-bottom: 8px;
-//   }
-//   span {
-//     font-family: "Proxima Nova";
-//     font-style: normal;
-//     font-weight: 400;
-//     font-size: 16px;
-//     line-height: 16px;
-//     color: #36454f;
-//   }
-//   p {
-//     font-family: "Proxima Nova";
-//     font-style: normal;
-//     font-weight: 400;
-//     font-size: 14px;
-//     line-height: 14px;
-//     text-align: center;
-//     color: #76848d;
-//   }
-// }
 </style>
