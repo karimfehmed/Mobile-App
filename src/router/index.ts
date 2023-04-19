@@ -12,6 +12,8 @@ import Neurologist from "../components/Neurologist.vue";
 import Opthal from "../components/Opthal.vue";
 import Pediatic from "../components/Pediatic.vue";
 import Allappoiments from "../components/Allappoiments.vue";
+// import AppoimentPopup from "../components/AppoimentPopup.vue";
+import CancelReason from "../components/CancelReason.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -75,6 +77,16 @@ const router = createRouter({
       path: "/allappoiments",
       name: "allappoiments ",
       component: Allappoiments,
+    },
+    // {
+    //   path: "/appoimentpopup",
+    //   name: "appoimentpopup",
+    //   component: AppoimentPopup,
+    // },
+    {
+      path: "/cancelreason",
+      name: "cancelreason",
+      component: CancelReason,
     },
   ],
 });

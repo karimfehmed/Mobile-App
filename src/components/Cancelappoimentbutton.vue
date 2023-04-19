@@ -21,7 +21,7 @@ const isStatus = computed(() => {
   }
 });
 const changedStatus = computed(() => {
-  if (props.title === "Book-Again") {
+  if (props.title === "Book Again") {
     return true;
   } else {
     return false;

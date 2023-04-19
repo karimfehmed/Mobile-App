@@ -10,15 +10,11 @@
       </div>
     </div>
     <div class="schedule-button d-flex">
-      <Cancelappoimentbutton title="Cancel Appoinment" />
-      <Reschedulebutton title="Reschedule" />
+      <slot name="cardButtons"></slot>
     </div>
   </div>
 </template>
-<script lang="ts" setup>
-import Cancelappoimentbutton from "./Cancelappoimentbutton.vue";
-import Reschedulebutton from "./Reschedulebutton.vue";
-</script>
+<script lang="ts" setup></script>
 <style lang="scss">
 .appoiment-status {
   box-shadow: 0px -2px 6px rgba(35, 35, 35, 0.04),

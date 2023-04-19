@@ -1,15 +1,15 @@
 <template>
   <div class="head-input d-flex pt-6 pb-6">
     <div class="Search d-flex mx-auto mr-0">
-      <!-- <slot name="searchValue" v-bind="searchValue"></slot> -->
-      <input type="text" placeholder="Search" v-model="searchtext" />
+      <img @click="searchText" src="../assets/icons/Search.svg" alt="" />
+      <input type="text" placeholder="Search" v-model="searchValue" />
     </div>
     <v-divider :thickness="6" vertical></v-divider>
     <div class="all-doctors select-box-container mx-auto ml-0">
       <v-select
         class="select-box"
         placeholder="All"
-        v-model="searchtext"
+        v-model="searchValue"
         :items="items"
       ></v-select>
     </div>
@@ -18,7 +18,6 @@
 <script setup lang="ts">
 import { ref } from "@vue/reactivity";
 
-let searchtext = ref("");
 let searchValue = ref("");
 let items = ref([
   "Primary Care Physician (PCP)",
@@ -30,6 +29,9 @@ let items = ref([
   "Psychiatrist",
   "Cardiologist",
 ]);
+let searchText = () => {
+  console.log("searchValue");
+};
 </script>
 <style lang="scss">
 .head-input {

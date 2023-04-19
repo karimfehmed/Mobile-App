@@ -18,15 +18,7 @@
             <img src="../assets/icons/likenot.svg" alt="" />
           </div>
         </div>
-        <specializationsearch>
-          <template #seachValue="searchText">
-            <img
-              @click="search(searchText)"
-              src="../assets/icons/Search.svg"
-              alt=""
-            />
-          </template>
-        </specializationsearch>
+        <specializationsearch> </specializationsearch>
       </div>
       <div class="pt-3">
         <Appoiments
@@ -179,8 +171,8 @@ let items = ref([
   "Cardiologist",
 ]);
 
-let search = (searchText: string) => {
-  console.log(searchText);
+let search = () => {
+  // console.log(searchText);
 };
 store.dispatch("getSpecialist");
 </script>
