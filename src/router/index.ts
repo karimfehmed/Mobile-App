@@ -14,6 +14,9 @@ import Pediatic from "../components/Pediatic.vue";
 import Allappoiments from "../components/Allappoiments.vue";
 // import AppoimentPopup from "../components/AppoimentPopup.vue";
 import CancelReason from "../components/CancelReason.vue";
+import RescheduleAppointment from "../components/RescheduleAppointment.vue";
+import RescheduleDatetime from "../components/RescheduleDatetime.vue";
+import BookAgain from "../components/BookAgain.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -87,6 +90,21 @@ const router = createRouter({
       path: "/cancelreason",
       name: "cancelreason",
       component: CancelReason,
+    },
+    {
+      path: "/rescheduleappointment",
+      name: "rescheduleappointment",
+      component: RescheduleAppointment,
+    },
+    {
+      path: "/rescheduledatetime",
+      name: "rescheduledatetime",
+      component: RescheduleDatetime,
+    },
+    {
+      path: "/bookagain",
+      name: "bookagain",
+      component: BookAgain,
     },
   ],
 });

@@ -74,7 +74,10 @@
                       </div>
                     </v-col>
                     <v-col cols="6">
-                      <Reschedulebutton title="Reschedule" />
+                      <Reschedulebutton
+                        title="Reschedule"
+                        @click="reschedule"
+                      />
                     </v-col>
                   </v-row>
                 </template>
@@ -84,7 +87,10 @@
             <v-window-item value="completed">
               <AppoimentStatus>
                 <template #cardButtons>
-                  <Cancelappoimentbutton title="Book Again" />
+                  <Cancelappoimentbutton
+                    title="Book Again"
+                    @click="bookagain"
+                  />
                   <Reschedulebutton title="Leave a Review" />
                 </template>
               </AppoimentStatus>
@@ -106,8 +112,15 @@ import AppoimentStatus from "./AppoimentStatus.vue";
 import BottomNavbar from "./BottomNavbar.vue";
 import Cancelappoimentbutton from "./Cancelappoimentbutton.vue";
 import Reschedulebutton from "./Reschedulebutton.vue";
+import router from "../router";
 
 let tab = ref(null);
+const reschedule = () => {
+  router.push("/rescheduleappointment");
+};
+const bookagain = () => {
+  router.push("/bookagain");
+};
 </script>
 <style lang="scss">
 .all-appointments {
