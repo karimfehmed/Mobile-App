@@ -4,9 +4,7 @@
       <v-card class="reschedule-appoiment-card">
         <img src="../assets/images/splashFrame.png" alt="Frame" />
         <v-card-title class="reschedule-card-heading mb-6">
-          <router-link to="/allappoiments">
-            <img src="../assets/icons/back.png" alt="Logo" class="Backicon" />
-          </router-link>
+          <BackButton />
           <p class="mx-auto">Reschedule Appointment</p>
         </v-card-title>
         <v-divider
@@ -49,10 +47,13 @@
   </div>
 </template>
 <script setup lang="ts">
+import { useRoute } from "vue-router";
 import router from "../router";
 import Basebutton from "./Basebutton.vue";
+import BackButton from "./BackButton.vue";
+const route = useRoute();
 const rescheduledatetime = () => {
-  router.push("/rescheduledatetime");
+  router.push("/rescheduledatetime/" + route.params.id);
 };
 </script>
 <style lang="scss">

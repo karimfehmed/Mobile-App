@@ -4,9 +4,10 @@
       <v-card class="cancel-reason-card">
         <img src="../assets/images/splashFrame.png" alt="Frame" />
         <v-card-title class="cancel-card-heading mb-6">
-          <router-link to="/allappoiments">
+          <BackButton />
+          <!-- <router-link to="/allappoiments">
             <img src="../assets/icons/back.png" alt="Logo" class="Backicon" />
-          </router-link>
+          </router-link> -->
           <p class="mx-auto">Cancel Appointment</p>
         </v-card-title>
         <v-divider
@@ -43,6 +44,7 @@
                   height="52"
                   width="361"
                   v-bind="props"
+                  @click="recentCancel"
                 />
               </template>
               <v-card class="cancel-reason-popup py-5">
@@ -78,10 +80,19 @@ import { ref } from "vue";
 import Basebutton from "./Basebutton.vue";
 import router from "../router";
 import store from "../store/store";
+import { useRoute } from "vue-router";
+import BackButton from "./BackButton.vue";
+
+let route = useRoute();
 let dialog = ref(false);
 const dialogclose = () => {
   dialog.value = true;
   router.push("/allappoiments");
+};
+
+const recentCancel = () => {
+  let id = route.params.id;
+  store.dispatch("cancelAppointment", id);
 };
 </script>
 <style lang="scss">

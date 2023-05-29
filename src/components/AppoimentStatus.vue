@@ -1,12 +1,15 @@
 <template>
-  <div class="appoiment-status">
+  <div class="appoiment-status my-3">
     <div class="d-flex py-3 pl-4 appoiment-status-content">
       <img src="../assets/images/dr amman.png" alt="Logo" />
       <div class="pl-3 d-flex flex-column">
-        <h4>Dr. Aman Bumrow</h4>
+        <h4>{{ doctor.name }}</h4>
         <h5>Cardiovascular</h5>
         <p>Upcoming</p>
-        <span>Today | 09:30 AM</span>
+        <span
+          >Today | {{ hours(doctor.hours) }} : {{ minutes(doctor.minutes) }}
+          {{ period(doctor.hours) }}</span
+        >
       </div>
     </div>
     <div class="schedule-button d-flex">
@@ -14,7 +17,28 @@
     </div>
   </div>
 </template>
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import type { DoctorsList } from "../types";
+const props = defineProps<{
+  doctor: DoctorsList;
+}>();
+
+const hours = (hours: number) => {
+  let currentHours = hours;
+  if (currentHours > 12) currentHours = hours - 12;
+  if (currentHours < 10) return "0" + currentHours.toString();
+  else return currentHours;
+};
+const minutes = (minutes: number) => {
+  if (minutes < 10) return "0" + minutes.toString();
+  else return minutes;
+};
+
+const period = (hours: number) => {
+  if (hours > 12) return "PM";
+  else return "AM";
+};
+</script>
 <style lang="scss">
 .appoiment-status {
   box-shadow: 0px -2px 6px rgba(35, 35, 35, 0.04),

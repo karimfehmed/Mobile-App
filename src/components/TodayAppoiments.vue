@@ -32,18 +32,22 @@
   </div>
 </template>
 <script lang="ts" setup>
+import store from "../store/store";
 import BaseButton from "./Basebutton.vue";
+
 const props = defineProps<{
   doctorname: string;
   specialtization: string;
   date: string;
   time: string;
 }>();
+
+store.dispatch("getupcomingAppoiments");
 </script>
 <style lang="scss" scoped>
 .doctor-appoiment-cards {
   background-color: #36454f;
-  width: 375px;
+  width: 100%;
   height: 140px;
   border-radius: 12px;
   .appoiment-card-content {

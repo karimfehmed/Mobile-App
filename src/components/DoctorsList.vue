@@ -1,16 +1,16 @@
 <template>
-  <v-card class="doctors-list mx-auto">
+  <v-card class="doctors-list mx-auto mb-3">
     <div class="d-flex px-3 py-3">
       <img src="../assets/images/dr amman.png" alt="" />
       <div
-        class="dosctors-list-content ml-3 d-flex flex-column justify-space-between"
+        class="dosctors-list-content mx-3 d-flex flex-column justify-space-between"
       >
         <div class="d-flex justify-space-between">
-          <h4>{{ doctorname }}</h4>
-          <img src="../assets/icons/Like.svg" alt="" />
+          <h4>{{ doctor.name }}</h4>
+          <!-- <img src="../assets/icons/Like.svg" alt="" /> -->
         </div>
 
-        <h2>{{ specialtization }}</h2>
+        <h2>{{ doctor.specialization }}</h2>
         <div>
           <p><img src="../assets/icons/star.svg" alt="" /> {{ reviews }}</p>
         </div>
@@ -54,37 +54,37 @@
           </p>
         </div>
         <v-divider></v-divider>
-        <div class="dentist">
+        <div class="dentist py-3">
           <v-card-text class="doctor-details">
-            <h4 class="pl-0">About me</h4>
-            {{ aboutdoctor }}
+            <h4 class="pl-0 pb-2">About me</h4>
+            {{ doctor.descrpition }}
           </v-card-text>
-          <div class="pl-3 pb-2">
+          <div class="px-3 py-3">
             <h4>Work Time</h4>
             <div class="work-time d-flex align-center justify-center mt-2">
               <p>{{ worktime }}</p>
             </div>
           </div>
           <v-divider></v-divider>
-          <div class="clinical-informatnion pl-3 pt-2">
+          <div class="clinical-informatnion px-3 py-3">
             <h4>Clinic Information</h4>
-            <div class="d-flex justify-space-between pt-2">
+            <div class="d-flex justify-space-between pt-2 align-center">
               <span>Clinic Name</span>
               <p>Aziza Clinic</p>
             </div>
-            <div class="d-flex justify-space-between pt-2">
+            <div class="d-flex justify-space-between pt-2 align-center">
               <span>Clinic Address</span>
               <p>Syedeny, Australia</p>
             </div>
-            <div class="d-flex justify-space-between pt-2">
+            <div class="d-flex justify-space-between pt-2 align-center">
               <span>Clinic Email</span>
               <p>Clinic@gmail.com</p>
             </div>
           </div>
           <v-divider></v-divider>
-          <div class="education pl-3 pt-2">
+          <div class="education px-3 py-3">
             <h4>Education</h4>
-            <div class="d-flex justify-space-between pt-2">
+            <div class="d-flex justify-space-between pt-2 align-center">
               <span>Degree</span>
               <p>
                 MBBS,Sydney college <br />
@@ -92,22 +92,27 @@
               </p>
             </div>
           </div>
-          <div class="serviceandspecialization pl-3 pt-2">
+          <div class="serviceandspecialization px-3 py-3">
             <h4>Service and Specialization</h4>
 
             <v-divider></v-divider>
-            <div class="d-flex justify-space-between pt-2">
+            <div class="d-flex justify-space-between pt-2 align-center">
               <span>Service</span>
               <p>Medicare</p>
             </div>
-            <div class="d-flex justify-space-between pt-2">
+            <div class="d-flex justify-space-between pt-2 align-center">
               <span>Specialization</span>
               <p>Childern care</p>
             </div>
           </div>
         </div>
         <div class="pt-8 pb-8">
-          <BaseButton title="Book an Appoinment" height="45" width="340" />
+          <BaseButton
+            title="Book an Appoinment"
+            height="45"
+            width="340"
+            @click="bookAppoiment"
+          />
         </div>
       </div>
     </v-expand-transition>
@@ -116,20 +121,26 @@
 <script setup lang="ts">
 import { ref } from "@vue/reactivity";
 import BaseButton from "./Basebutton.vue";
+import type { DoctorsList } from "../types";
+import store from "../store/store";
 
 let show = ref(false);
 
 const props = defineProps<{
-  doctorname: string;
-  specialtization: string;
-  reviews: string;
-  patients: string;
-  experience: string;
-  rating: string;
-  totalreviews: string;
-  aboutdoctor: string;
-  worktime: string;
+  doctor: DoctorsList;
 }>();
+
+const bookAppoiment = () => {
+  store.dispatch("bookAppoiment", props.doctor);
+};
+let patients = "5000+";
+let rating = "4.8";
+let experience = "10+";
+let totalreviews = "4,942";
+let reviews = "5.0 / 177 Reviews";
+let aboutdoctor =
+  "Dr. Aman Bumrow is the top most Immunologist specialist in christ Hospital at London. She achived several awards for her wonderful contribution in medical field. She is available for private consultation.";
+let worktime = "Monday - Friday , 08:00 AM - 20:00 PM";
 </script>
 <style lang="scss">
 .doctors-list {
