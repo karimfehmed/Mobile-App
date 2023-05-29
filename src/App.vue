@@ -1,6 +1,9 @@
 <template>
   <v-app>
-    <v-layout class="main-layout">
+    <div class="pre-loader mx-auto" v-if="store.state.bodyLoader">
+      <img src="./assets/images/loader.26e2ff2.gif" alt="" />
+    </div>
+    <v-layout class="main-layout" v-else>
       <v-main class="main-container mx-auto bg-white">
         <router-view class="main-view"></router-view>
       </v-main>
@@ -9,22 +12,25 @@
   </v-app>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import store from "./store/store";
 
-export default defineComponent({
-  name: "App",
-
-  components: {},
-
-  data() {
-    return {
-      //
-    };
-  },
-});
+store.dispatch("getCurrentpatientDetails");
 </script>
 <style scoped lang="scss">
+.pre-loader {
+  align-items: center;
+  display: flex;
+  width: 393px;
+
+  justify-content: center;
+  height: 100vh;
+  background-color: #fff;
+
+  img {
+    width: 80px;
+  }
+}
 .main-layout {
   position: fixed;
   width: 393px;
@@ -38,7 +44,7 @@ export default defineComponent({
   overflow-y: auto;
 }
 .main-container::-webkit-scrollbar {
-  width: 0;
+  width: 3px;
 }
 ::-webkit-scrollbar-track {
   background: white;

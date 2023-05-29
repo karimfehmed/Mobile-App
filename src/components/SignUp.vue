@@ -4,9 +4,7 @@
       <img src="../assets/images/splashFrame.png" alt="Frame" />
       <v-card class="px-6">
         <v-card-title class="signup-heading mb-5">
-          <router-link to="/">
-            <img src="../assets/icons/back.png" alt="Logo" class="Backicon" />
-          </router-link>
+        <BackButton/>
           <p class="mx-auto">Sign Up</p>
         </v-card-title>
         <v-divider class="mx-auto" width="361"></v-divider>
@@ -40,6 +38,15 @@
                 <BaseInput
                   v-model="phoneNumber"
                   placeholder="Enter your phone number"
+                />
+              </div>
+            </v-col>
+            <v-col class="SignupInputfield pt-0">
+              <label for="" class="baseinputlabel">Password</label>
+              <div>
+                <BaseInput
+                  v-model="password"
+                  placeholder="Enter your Password"
                 />
               </div>
             </v-col>
@@ -94,6 +101,9 @@
                 v-on:click="singnUpForm"
               />
             </v-col>
+            <v-col class="sign-in">
+              <p>Already Have an Account? <router-link  to="/signin">Sign In</router-link></p>
+          </v-col>
           </v-row>
         </v-form>
       </v-card>
@@ -105,6 +115,8 @@ import BaseInput from "../components/BaseInput.vue";
 import BaseButton from "../components/Basebutton.vue";
 import { ref } from "@vue/reactivity";
 import store from "../store/store";
+import BackButton from "./BackButton.vue";
+
 import { computed } from "vue";
 
 let firstName = ref("");
@@ -119,6 +131,7 @@ let height = ref("");
 let weight = ref("");
 let agree = ref(false);
 let test = ref(false);
+let password =ref("");
 
 const singnUpForm = () => {
   if (
@@ -131,7 +144,8 @@ const singnUpForm = () => {
     !month.value ||
     !year.value ||
     !height.value ||
-    !weight.value
+    !weight.value ||
+    !password.value
   ) {
     alert("Please fill out all required fields.");
     return;
@@ -152,12 +166,27 @@ const singnUpForm = () => {
       weight: weight.value,
       email: email.value,
       phoneNumber: phoneNumber.value,
+      password: password.value,
     })
-  }
-
+  };
 };
-
-
-
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.sign-in{
+  text-align: center;
+  p{
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 12px;
+    color: #36454F;
+    a{
+      color: #CC5500;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+  }
+}
+</style>

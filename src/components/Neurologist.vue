@@ -3,15 +3,9 @@
     <h1>Neurologist</h1>
     <div class="neurologist pt-4">
       <DoctorsList
-        patients="5000+"
-        rating="5.0"
-        experience="10+"
-        totalreviews="4,942"
-        reviews="5.0 / 177 Reviews"
-        doctorname="Dr Sanjeed Islam"
-        specialtization="Neurologist"
-        aboutdoctor="Dr. Sanjeed is the top most Immunologist specialist in christ Hospital at London. She achived several awards for her wonderful contribution in medical field. She is available for private consultation."
-        worktime="Monday - Friday , 08:00 AM - 20:00 PM"
+        v-for="(doctor, index) in nurologistList"
+        :key="index"
+        :doctor="doctor"
       />
     </div>
     <bottomnavbar />
@@ -20,6 +14,13 @@
 <script setup lang="ts">
 import DoctorsList from "./DoctorsList.vue";
 import bottomnavbar from "./BottomNavbar.vue";
+import { computed } from "vue";
+import store from "../store/store";
+const nurologistList = computed(() => {
+  return store.state.nurologistList;
+});
+
+store.dispatch("getNurologist");
 </script>
 <style lang="scss" scopoed>
 .neurologist-card {

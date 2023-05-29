@@ -4,9 +4,7 @@
       <img src="../assets/images/splashFrame.png" alt="Frame" />
       <v-card class="px-6">
         <v-card-title class="signup-heading mb-5">
-          <router-link to="/PersonalInfo">
-            <img src="../assets/icons/back.png" alt="Logo" class="Backicon" />
-          </router-link>
+          <BackButton />
           <p class="mx-auto">Add Your Family Details</p>
         </v-card-title>
         <v-divider class="mx-auto" width="361"></v-divider>
@@ -43,7 +41,6 @@
                   v-model="Dieases"
                   label="Select Here"
                   :items="['Cancer', 'Stroke', 'Mental illness']"
-                  multiple
                 ></v-select>
               </div>
             </v-col>
@@ -100,6 +97,7 @@ import BaseInput from "../components/BaseInput.vue";
 import BaseButton from "../components/Basebutton.vue";
 import { ref } from "@vue/reactivity";
 import store from "../store/store";
+import BackButton from "./BackButton.vue";
 
 let firstName = ref("");
 let lastName = ref("");

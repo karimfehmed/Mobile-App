@@ -12,7 +12,11 @@
         <v-card-text>
           <v-window v-model="tab">
             <v-window-item value="upcoming">
-              <AppoimentStatus>
+              <AppoimentStatus
+                v-for="(doctor, index) in uppcomingAppoiments"
+                :key="index"
+                :doctor="doctor"
+              >
                 <template #cardButtons>
                   <v-row no-gutters>
                     <v-col cols="6">
@@ -23,6 +27,7 @@
                         >
                           <template v-slot:activator="{ props }">
                             <Cancelappoimentbutton
+                              @click="currentCancelled(doctor)"
                               title="Cancel Appoinment"
                               v-bind="props"
                             >
@@ -60,7 +65,9 @@
                                 >
                                   Back
                                 </v-btn>
-                                <router-link to="/cancelreason">
+                                <router-link
+                                  :to="'/cancelappoiments/' + doctor.docId"
+                                >
                                   <v-btn
                                     variant="text"
                                     class="popup-cancel-button"
@@ -76,7 +83,7 @@
                     <v-col cols="6">
                       <Reschedulebutton
                         title="Reschedule"
-                        @click="reschedule"
+                        @click="reschedule(doctor)"
                       />
                     </v-col>
                   </v-row>
@@ -85,11 +92,15 @@
             </v-window-item>
 
             <v-window-item value="completed">
-              <AppoimentStatus>
+              <AppoimentStatus
+                v-for="(doctor, index) in completedAppoiments"
+                :key="index"
+                :doctor="doctor"
+              >
                 <template #cardButtons>
                   <Cancelappoimentbutton
                     title="Book Again"
-                    @click="bookagain"
+                    @click="bookagain(doctor)"
                   />
                   <Reschedulebutton title="Leave a Review" />
                 </template>
@@ -98,7 +109,11 @@
 
             <v-window-item value="cancelled">
               <AppoimentStatus
-            /></v-window-item>
+                v-for="(doctor, index) in cancelledAppoiments"
+                :key="index"
+                :doctor="doctor"
+              ></AppoimentStatus
+            ></v-window-item>
           </v-window>
         </v-card-text>
       </v-card>
@@ -113,14 +128,36 @@ import BottomNavbar from "./BottomNavbar.vue";
 import Cancelappoimentbutton from "./Cancelappoimentbutton.vue";
 import Reschedulebutton from "./Reschedulebutton.vue";
 import router from "../router";
+import store from "../store/store";
+import { computed } from "vue";
+import { DoctorsList } from "../types";
 
 let tab = ref(null);
-const reschedule = () => {
-  router.push("/rescheduleappointment");
+const reschedule = (doctor: DoctorsList) => {
+  router.push("/rescheduleappointment/" + doctor.docId);
 };
-const bookagain = () => {
-  router.push("/bookagain");
+
+const currentCancelled = (doctor: DoctorsList) => {
+  store.commit("currentCancelled", doctor);
+  // router.push("/allappoiments/" + doctor.id);
 };
+const bookagain = (doctor: DoctorsList) => {
+  store.dispatch("bookAppoiment", doctor);
+};
+store.dispatch("getcancelledAppoiments");
+store.dispatch("getupcomingAppoiments");
+store.dispatch("getcompletedAppoiments");
+
+const cancelledAppoiments = computed(() => {
+  return store.state.cancelledAppoiments;
+});
+const completedAppoiments = computed(() => {
+  return store.state.completedAppoiments;
+});
+
+const uppcomingAppoiments = computed(() => {
+  return store.state.uppcomingAppoiments;
+});
 </script>
 <style lang="scss">
 .all-appointments {

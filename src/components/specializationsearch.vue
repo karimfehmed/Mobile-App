@@ -1,7 +1,12 @@
 <template>
   <div class="head-input d-flex pt-6 pb-6">
-    <div class="Search d-flex mx-auto mr-0">
-      <img @click="searchText" src="../assets/icons/Search.svg" alt="" />
+    <div class="Search d-flex mx-auto mr-0 align-center">
+      <img
+        @click="searchDoctor"
+        src="../assets/icons/Search.svg"
+        alt=""
+        class="searchText"
+      />
       <input type="text" placeholder="Search" v-model="searchValue" />
     </div>
     <v-divider :thickness="6" vertical></v-divider>
@@ -17,20 +22,19 @@
 </template>
 <script setup lang="ts">
 import { ref } from "@vue/reactivity";
+import store from "../store/store";
 
 let searchValue = ref("");
 let items = ref([
-  "Primary Care Physician (PCP)",
+  "General",
   "Dentist",
-  "Eye Doctor",
-  "Psychiatrist",
-  "Orthopedic Surgeon ",
-  "Acupuncturist",
-  "Psychiatrist",
-  "Cardiologist",
+  "Nutrition",
+  "Neurology",
+  "Opthal",
+  "Pediatric",
 ]);
-let searchText = () => {
-  console.log("searchValue");
+let searchDoctor = () => {
+  store.dispatch("searchDoctor", searchValue.value);
 };
 </script>
 <style lang="scss">
@@ -78,6 +82,9 @@ let searchText = () => {
     .select-box {
       width: 50px;
     }
+  }
+  .searchText {
+    cursor: pointer;
   }
 }
 </style>

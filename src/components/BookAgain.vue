@@ -3,12 +3,8 @@
     <v-card class="bookagain-card py-4">
       <img src="../assets/images/splashFrame.png" alt="Frame" />
       <v-card-title class="bookagain-heading mb-6">
-        <img
-          src="../assets/icons/back.png"
-          alt="Logo"
-          class="Backicon"
-          @click="reschduleappoiments"
-        />
+        <BackButton />
+        <img src="../assets/icons/back.png" alt="Logo" class="Backicon" />
         <p class="mx-auto">Patient Details</p>
       </v-card-title>
       <v-divider :thickness="1" class="bookagain-divider mx-auto"></v-divider>
@@ -48,12 +44,11 @@
   </v-sheet>
 </template>
 <script setup lang="ts">
+import { ref } from "vue";
 import router from "../router";
 import Basebutton from "./Basebutton.vue";
 import BaseInput from "./BaseInput.vue";
-const reschduleappoiments = () => {
-  router.push("/allappoiments");
-};
+import BackButton from "./BackButton.vue";
 </script>
 <style lang="scss">
 .bookagain-card {
