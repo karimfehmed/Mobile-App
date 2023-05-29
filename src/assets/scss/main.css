@@ -4,16 +4,16 @@
   box-sizing: border-box;
 }
 
-.SplashOne {
+.splash-one {
   width: 393px;
   height: 100%;
 }
 
-.DoctorImage {
+.doctor-images {
   width: 100%;
 }
 
-.DoctorTitle {
+.doctor-card-title {
   color: #36454f;
   font-family: "Proxima Nova";
   font-style: normal;
@@ -24,7 +24,7 @@
   padding-top: 32px;
 }
 
-.DoctorSubTitle {
+.doctor-card-subTitle {
   color: #36454f;
   font-family: "Proxima Nova";
   font-style: normal;
@@ -37,20 +37,20 @@
   color: #76848d;
 }
 
-.Signup {
+.signup-details {
   width: 393px;
 }
 
-.SignupHeading {
+.signup-heading {
   display: flex;
   padding: 20px 0;
 }
-.SignupHeading img {
+.signup-heading img {
   height: 18.75px;
   width: 18.75px;
   cursor: pointer;
 }
-.SignupHeading p {
+.signup-heading p {
   color: #36454f;
   font-family: "Proxima Nova";
   font-style: normal;
@@ -62,7 +62,7 @@
   color: #242424;
 }
 
-.GenderSelect {
+.gender-select {
   color: #36454f;
   font-family: "Proxima Nova";
   font-style: normal;
@@ -79,7 +79,7 @@
   padding: 8px;
 }
 
-.Baseinputlabel {
+.baseinputlabel {
   color: #36454f;
   font-family: "Proxima Nova";
   font-style: normal;
@@ -90,7 +90,7 @@
   color: #242424;
 }
 
-.WeightHeight {
+.weightheight {
   display: flex;
   justify-content: space-between;
 }
@@ -117,8 +117,4 @@
 .Terms p span {
   font-weight: 600;
   color: #242424;
-}
-
-.Family-Details {
-  width: 393px;
 }/*# sourceMappingURL=main.css.map */
