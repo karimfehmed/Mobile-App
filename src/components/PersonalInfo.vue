@@ -48,6 +48,7 @@
                 height="52"
                 width="330"
                 v-on:click="PersonalDetails"
+                :loading="store.state.personalInfoLoader"
               />
             </v-col>
           </v-row>

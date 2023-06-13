@@ -26,31 +26,45 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import state from "./state";
 import { ref } from "vue";
 export default {
-  singnUpForm: ({}, payload: SignUpData) => {
-    console.log(payload.email);
-    createUserWithEmailAndPassword(auth, payload.email, payload.password).then(
-      (credentials) => {
-        setDoc(doc(db, "PatientDetails", credentials.user.uid), payload)
-          .then((response) => {
-            router.push({ name: "PersonalInfo" });
-          })
-          .catch((error) => {
-            console.error("Error adding document: ", error);
-          });
-      }
-    );
-  },
-  singnInForm: async ({}, payload: SignUpData) => {
-    console.log(payload);
+  singnUpForm: async ({ state }: { state: State }, payload: SignUpData) => {
+    state.signUpLoader = true;
+    console.log(state.signUpLoader);
     try {
-      await signInWithEmailAndPassword(auth, payload.email, payload.password);
+      let credentials = await createUserWithEmailAndPassword(
+        auth,
+        payload.email,
+        payload.password
+      );
+      let response = await setDoc(
+        doc(db, "PatientDetails", credentials.user.uid),
+        payload
+      );
+      // state.signUpLoader = false;
+      console.log(state.signUpLoader);
+      router.push({ name: "PersonalInfo" });
+    } catch (error: any) {
+      state.signUpLoader = false;
+    }
+  },
+  singnInForm: async ({ state }: { state: State }, payload: SignUpData) => {
+    console.log(payload);
+    state.signInLoader = true;
+    console.log(state.signInLoader);
+    try {
+      let singInform = await signInWithEmailAndPassword(
+        auth,
+        payload.email,
+        payload.password
+      );
+      state.signInLoader = false;
+
       router.push({ name: "newuser" });
       console.log("Signed in successfully");
     } catch (error) {
-      alert("Error signing in:");
+      alert("Please Check your Email and Password");
+      state.signInLoader = false;
     }
   },
   LogOut: async () => {
@@ -75,7 +89,7 @@ export default {
         onSnapshot(
           docRef,
           (snapshot) => {
-            const data = { ...snapshot.data(), id: snapshot.id };
+            const data = { ...snapshot.data(), id: user.uid };
             commit("setCurrentUser", data);
             state.bodyLoader = false;
           },
@@ -90,25 +104,40 @@ export default {
       }
     });
   },
-  PersonalDetails: ({}, payload: personalDetails) => {
-    const docRef = addDoc(collection(db, "PatientDetails"), payload)
-      .then((response) => {
-        console.log("Document written with ID: ", response.id);
-        router.push({ name: "familyDetails" });
-      })
-      .catch((error) => {
-        console.error("Error adding document: ", error);
-      });
+  PersonalDetails: async (
+    { state }: { state: State },
+    payload: personalDetails
+  ) => {
+    try {
+      state.personalInfoLoader = true;
+      const response = await addDoc(collection(db, "PatientDetails"), payload);
+
+      console.log("Document written with ID: ", response.id);
+      state.personalInfoLoader = false;
+
+      router.push({ name: "familyDetails" });
+    } catch (error) {
+      state.personalInfoLoader = false;
+
+      console.error("Error adding document: ", error);
+    }
   },
-  FamilyDetails: ({}, payload: familyDetails) => {
-    const docRef = addDoc(collection(db, "PatientDetails"), payload)
-      .then((response) => {
-        console.log("Document written with ID: ", response.id);
-        router.push({ name: "newuser" });
-      })
-      .catch((error) => {
-        console.error("Error adding document: ", error);
-      });
+  FamilyDetails: async (
+    { state }: { state: State },
+    payload: familyDetails
+  ) => {
+    try {
+      state.personalInfoLoader = true;
+
+      const response = await addDoc(collection(db, "PatientDetails"), payload);
+      console.log("Document written with ID: ", response.id);
+      state.personalInfoLoader = false;
+
+      router.push({ name: "newuser" });
+    } catch (error) {
+      state.personalInfoLoader = false;
+      console.error("Error adding document: ", error);
+    }
   },
 
   getSpecialist: ({}, payload: string) => {
@@ -121,13 +150,20 @@ export default {
     });
   },
   getDoctorslist: ({ commit, state }: { commit: Commit; state: State }) => {
-    db.collection("Doctors").onSnapshot((snapshot) => {
-      state.doctorsList = [];
-      snapshot.forEach((doc) => {
-        let data = { ...doc.data(), docId: doc.id };
-        commit("setDoctorsList", data);
+    try {
+      db.collection("Doctors").onSnapshot((snapshot) => {
+        state.doctorsList = [];
+        state.listAppoimentLoader = false;
+        state.bookAppoimentLoader = false;
+        snapshot.forEach((doc) => {
+          let data = { ...doc.data(), docId: doc.id };
+          commit("setDoctorsList", data);
+        });
       });
-    });
+    } catch (error) {
+      state.listAppoimentLoader = false;
+      state.bookAppoimentLoader = false;
+    }
   },
   searchDoctor: (
     { commit, state }: { commit: Commit; state: State },
@@ -210,6 +246,8 @@ export default {
       });
   },
   bookAppoiment: ({ state }: { state: State }, payload: DoctorsList) => {
+    let date = new Date();
+    payload.date = date;
     const id = state.currentPatientDetails.id;
     addDoc(collection(db, "PatientDetails/" + id + "/upcomming"), payload)
       .then(() => {})
@@ -223,7 +261,7 @@ export default {
   ) => {
     const id = state.currentPatientDetails.id;
     console.log(payload);
-
+    state.signInLoader = true;
     const subcollectionRef = db
       .collection("PatientDetails")
       .doc(id)
@@ -237,9 +275,16 @@ export default {
           .doc(id)
           .collection("upcomming")
           .doc(doc.id);
-        docRef.update({
-          date: payload.currentDate,
-        });
+        docRef
+          .update({
+            date: payload.currentDate,
+          })
+          .then(() => {
+            state.signInLoader = false;
+          })
+          .catch((error) => {
+            state.signInLoader = false;
+          });
       });
     });
   },
@@ -276,33 +321,31 @@ export default {
     commit: Commit;
     state: State;
   }) => {
+    console.log("test");
     const id = state.currentPatientDetails.id;
     const q = collection(db, "PatientDetails/" + id + "/upcomming");
     onSnapshot(q, (querysnap) => {
       state.uppcomingAppoiments = [];
+      state.todaysAppoiments = [];
       querysnap.forEach((doc) => {
         let data = { ...doc.data() };
         if (data.date) {
           let time = data.date.toDate();
           data.hours = time.getHours();
           data.minutes = time.getMinutes();
+          let date = data.date.toDate();
+          // let date = new Date(scheduleDate);
+          let secduleDay = date.getDate();
+          let sechduleMonth = date.getMonth() + 1;
+          let secduleYear = date.getFullYear();
+
+          data.day = secduleDay;
+          data.month = sechduleMonth;
+          data.year = secduleYear;
+          data.date = parseInt(`${secduleDay}${sechduleMonth}${secduleYear}`);
         }
         commit("setUppcomingAppoiments", data);
-        let todaysTime = Timestamp.now().toDate();
-        let todayMonth = todaysTime.getMonth();
-        let todayDay = todaysTime.getDay();
-        let todayYear = todaysTime.getFullYear();
-
-        let scheduleDate = data.date.toDate();
-        let date = new Date(scheduleDate);
-        let secduleDay = date.getDay();
-        let sechduleMonth = date.getMonth() + 1;
-        let secduleYear = date.getFullYear();
-
-        console.log(date);
-        console.log(secduleDay, sechduleMonth, secduleYear);
-
-        // commit("settodaysAppoiments", data);
+        commit("setTodaysAppoiments", data);
       });
     });
   },

@@ -20,7 +20,13 @@
       </div>
     </div>
     <div class="py-4">
-      <Basebutton title="Sign In" height="52" width="361" @Click="SignIn" />
+      <Basebutton
+        title="Sign In"
+        height="52"
+        width="361"
+        @Click="SignIn"
+        :loading="store.state.signInLoader"
+      />
     </div>
     <div class="no-account">
       <p>
@@ -37,6 +43,9 @@ import Basebutton from "./Basebutton.vue";
 let email = ref("");
 let password = ref("");
 const SignIn = () => {
+  if (!email.value || !password.value) {
+    alert("Please Check your Email and Password");
+  }
   store.dispatch("singnInForm", {
     email: email.value,
     password: password.value,

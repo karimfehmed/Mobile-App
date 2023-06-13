@@ -98,7 +98,8 @@
                 title="Next"
                 height="52"
                 width="330"
-                v-on:click="singnUpForm"
+                :loading=" store.state.signUpLoader"
+                @click="singnUpForm"
               />
             </v-col>
             <v-col class="sign-in">
@@ -134,6 +135,7 @@ let test = ref(false);
 let password =ref("");
 
 const singnUpForm = () => {
+  store.dispatch('singnUpForm');
   if (
     !firstName.value ||
     !lastName.value ||

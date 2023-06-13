@@ -39,6 +39,7 @@
                   width="361"
                   v-bind="props"
                   @click="update"
+                  :loading="store.state.signInLoader"
                 />
               </template>
               <v-card class="cancel-reason-popup py-5">

@@ -16,4 +16,9 @@ export default {
   bodyLoader: true,
   messages: [] as Array<Messages>,
   currentCancelled: {} as DoctorsList,
+  listAppoimentLoader: false,
+  bookAppoimentLoader: false,
+  signUpLoader: false,
+  signInLoader: false,
+  personalInfoLoader: false,
 };

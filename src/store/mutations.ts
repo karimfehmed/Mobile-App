@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore";
 import router from "../router";
 import type { State, DoctorsList, SignUpData, Messages } from "../types";
 
@@ -35,9 +36,6 @@ export default {
   setUppcomingAppoiments: (state: State, payload: DoctorsList) => {
     state.uppcomingAppoiments.push(payload);
   },
-  settodaysAppoiments: (state: State, payload: DoctorsList) => {
-    console.log(payload);
-  },
   currentCancelled: (state: State, payload: DoctorsList) => {
     state.currentCancelled = payload;
   },
@@ -50,5 +48,16 @@ export default {
 
   setMessages: (state: State, payload: Messages) => {
     state.messages.push(payload);
+  },
+
+  setTodaysAppoiments: (state: State, payload: DoctorsList) => {
+    console.log(payload);
+    let date = new Date();
+    let currentDate = parseInt(
+      `${date.getDate()}${date.getMonth() + 1}${date.getFullYear()}`
+    );
+    if (payload.date === currentDate) {
+      state.todaysAppoiments.push(payload);
+    }
   },
 };

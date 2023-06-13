@@ -12,11 +12,29 @@ export type State = {
   uppcomingAppoiments: Array<DoctorsList>;
   completedAppoiments: Array<DoctorsList>;
   test: Array<DoctorsList>;
-  currentPatientDetails: object;
+  currentPatientDetails: PatientDetails;
   bodyLoader: boolean;
   messages: Array<Messages>;
-  currentCancelled: object;
+  currentCancelled: DoctorsList;
   todaysAppoiments: Array<DoctorsList>;
+  listAppoimentLoader: boolean;
+  bookAppoimentLoader: boolean;
+  signUpLoader: boolean;
+  signInLoader: boolean;
+  personalInfoLoader: boolean;
+};
+
+export type PatientDetails = {
+  dob: Date;
+  email: string;
+  firstName: string;
+  gender: string;
+  height: number;
+  id: string;
+  lastName: string;
+  password: string;
+  phoneNumber: number;
+  weight: number;
 };
 
 export type Messages = {
@@ -28,18 +46,18 @@ export type Messages = {
 };
 
 export type SignUpData = {
-  dob: string;
+  dob: Date;
   email: string;
   firstName: string;
   gender: string;
-  height: string;
-  id: string;
+  height: number;
   lastName: string;
   password: string;
-  phoneNumber: string;
-  weight: string;
+  phoneNumber: number;
+  weight: number;
   agree: boolean;
   test: boolean;
+  id: string;
 };
 
 export type personalDetails = {
@@ -53,9 +71,9 @@ export type personalDetails = {
 export type familyDetails = {
   firstName: string;
   lastName: string;
-  day: string;
-  month: string;
-  year: string;
+  day: number;
+  month: number;
+  year: number;
   Dieases: Array<string>;
   Details: string;
 };
@@ -63,8 +81,17 @@ export type DoctorsList = {
   name: string;
   specialization: string;
   schedule: Date;
+  day: number;
+  month: number;
+  year: number;
+  date: number | Date;
+  time: string;
   descrpition: string;
   docId: string;
   hours: number;
   minutes: number;
 };
+
+export interface ThemeState {
+  darkMode: boolean;
+}

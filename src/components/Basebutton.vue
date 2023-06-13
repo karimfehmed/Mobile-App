@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex justify-center Button">
-    <v-btn class="cardButton" :height="height" :width="width"
+    <v-btn class="cardButton" :height="height" :width="width" :loading="loading"
       >{{ title }}
       <slot name="ButtonText"></slot>
     </v-btn>
@@ -11,6 +11,7 @@ const props = defineProps<{
   title?: string;
   width: string;
   height: string;
+  loading?: boolean;
 }>();
 </script>
 

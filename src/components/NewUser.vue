@@ -20,13 +20,14 @@
         </div>
         <specializationsearch> </specializationsearch>
       </div>
-      <div class="pt-3">
-        <TodaysAppoiments
-          doctorname="Dr. Muhamme Syahid"
-          date="01/04/98"
-          specialtization="Heart Specialist"
-          time="02:00"
-        />
+      <!-- <v-switch @click="switchTheme"></v-switch> -->
+
+      <div
+        class="mt-4 mb-2 carousel"
+        v-if="store.state.todaysAppoiments.length > 0"
+      >
+        <h1 class="px-4 my-2">Appointment Today</h1>
+        <Carousel />
       </div>
       <div class="medical-checks my-3 mx-auto">
         <h1>Medical Checks!</h1>
@@ -35,7 +36,10 @@
             Check your health condition regularly to minimize the incidence of
             disease in the future...
           </p>
-          <v-btn class="medical-checks-button" @click="getDoctorslist"
+          <v-btn
+            class="medical-checks-button"
+            @click="bookNow"
+            :loading="store.state.bookAppoimentLoader"
             >Book Now</v-btn
           >
         </div>
@@ -81,7 +85,7 @@
           </div>
           <div class="icon-box">
             <v-icon class="speciality-icon">
-              <v-btn icon="" flat class="bg-background">
+              <v-btn icon="" flat class="bg-background" to="/inbox">
                 <img
                   class="icon-image"
                   src="../assets/icons/consultation 1.svg"
@@ -145,6 +149,7 @@
           height="50"
           width="361"
           @click="getDoctorslist"
+          :loading="store.state.listAppoimentLoader"
         />
       </div>
 
@@ -163,7 +168,7 @@ import DoctorsList from "./DoctorsList.vue";
 import TodaysAppoiments from "./TodayAppoiments.vue";
 import store from "../store/store";
 import specializationsearch from "./specializationsearch.vue";
-import console from "console";
+import Carousel from "./TodaysAppoimentCarousel.vue";
 import { computed } from "vue";
 let items = ref([
   "Primary Care Physician (PCP)",
@@ -179,11 +184,22 @@ let items = ref([
 store.dispatch("getSpecialist");
 const getDoctorslist = () => {
   store.dispatch("getDoctorslist");
+  store.state.listAppoimentLoader = true;
+};
+const bookNow = () => {
+  store.dispatch("getDoctorslist");
+  store.state.bookAppoimentLoader = true;
 };
 
 const doctorList = computed(() => {
   return store.state.doctorsList;
 });
+
+store.dispatch("getupcomingAppoiments");
+
+// const switchTheme = () => {
+//   console.log("Theme");
+// };
 </script>
 <style lang="scss" scoped>
 .doctors-dropdown {
@@ -208,6 +224,16 @@ const doctorList = computed(() => {
     font-weight: 600;
     font-size: 13px;
     line-height: 13px;
+  }
+}
+.carousel {
+  h1 {
+    font-family: "Proxima Nova";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    color: #36454f;
   }
 }
 
